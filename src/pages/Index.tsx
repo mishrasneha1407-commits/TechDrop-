@@ -1,37 +1,589 @@
 
-import PageLayout from '@/components/PageLayout';
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import Projects from '@/components/Projects';
-import WhyWrlds from '@/components/WhyWrlds';
-import BlogPreview from '@/components/BlogPreview';
+import { motion } from 'framer-motion';
+import { 
+  Code, 
+  Server, 
+  Settings, 
+  CheckCircle, 
+  ArrowRight, 
+  Mail, 
+  Phone, 
+  MapPin,
+  Star,
+  Zap,
+  Shield,
+  Rocket
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
-import { useEffect } from 'react';
 
 const Index = () => {
-  // Fix any ID conflicts when the page loads
-  useEffect(() => {
-    const contactElements = document.querySelectorAll('[id="contact"]');
-    if (contactElements.length > 1) {
-      // If there are multiple elements with id="contact", rename one
-      contactElements[1].id = 'contact-footer';
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-  }, []);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6 }
+    }
+  };
 
   return (
-    <PageLayout>
+    <>
       <SEO 
-        title="WRLDS - Smart Textile Technology" 
-        description="WRLDS Technologies: Pioneering smart engineering solutions with textile sensors for sports, safety, and performance monitoring."
-        imageUrl="/lovable-uploads/526dc38a-25fa-40d4-b520-425b23ae0464.png"
-        keywords={['smart textiles', 'wearable technology', 'textile sensors', 'sports tech', 'safety monitoring', 'performance analytics', 'manufacturing']}
+        title="TechDrop - Full-Stack Website Solutions" 
+        description="From design to hosting to maintenance — TechDrop handles everything so you can focus on growth. Based in Baner, Pune."
+        keywords={['web development', 'website design', 'hosting', 'maintenance', 'pune', 'full-stack']}
       />
-      <Hero />
-      <Features />
-      <WhyWrlds />
-      <Projects />
-      <BlogPreview />
-    </PageLayout>
+      
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                TechDrop
+              </h1>
+            </div>
+            <Button 
+              onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+            >
+              Book Free Consultation
+            </Button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
+        <motion.div 
+          className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+            variants={itemVariants}
+          >
+            Full-Stack Website Solutions,{' '}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Done for You.
+            </span>
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
+            variants={itemVariants}
+          >
+            From design to hosting to maintenance — TechDrop handles everything so you can focus on growth.
+          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Button 
+              size="lg"
+              onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-8 py-6 h-auto"
+            >
+              Book a Free Consultation
+              <ArrowRight className="ml-2" />
+            </Button>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              Who We Are
+            </motion.h2>
+            <motion.p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed" variants={itemVariants}>
+              Founded by <strong>Vaishnav Bhosale (Founder)</strong> and <strong>Sneha Mishra (Co-Founder)</strong>, 
+              TechDrop is a full-service web agency based in Baner, Pune. We create custom websites, deploy them on 
+              reliable hosting, connect your domain, and keep them maintained 24/7. Our mission is simple: build 
+              digital experiences that actually work.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              What We Do
+            </motion.h2>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Code className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Custom Website Design & Development</h3>
+                  <p className="text-gray-600">Tailored websites built for businesses, startups, and professionals.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Server className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Hosting & Deployment</h3>
+                  <p className="text-gray-600">We manage hosting, domains, SSL, and updates so you don't have to.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Settings className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Ongoing Maintenance</h3>
+                  <p className="text-gray-600">Continuous monitoring, fixes, and performance improvements.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              Plans That Fit Your Business
+            </motion.h2>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-2 hover:border-blue-300 transition-colors">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter Website</h3>
+                  <p className="text-3xl font-bold text-blue-600 mb-6">₹14,999 <span className="text-sm text-gray-500">one-time</span></p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Single-page modern website</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Free custom domain setup</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Mobile-friendly design</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Hosting & SSL included for 1 year</li>
+                  </ul>
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  >
+                    Book Consultation
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-2 border-purple-300 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </span>
+                </div>
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Business Website</h3>
+                  <p className="text-3xl font-bold text-purple-600 mb-6">₹39,999 <span className="text-sm text-gray-500">one-time</span></p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />5–7 page business website</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Free domain & hosting setup</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />SEO optimization basics</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Analytics & contact form integration</li>
+                  </ul>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  >
+                    Book Consultation
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="h-full border-2 hover:border-purple-300 transition-colors">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise Website</h3>
+                  <p className="text-3xl font-bold text-purple-600 mb-6">Custom Quote</p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Advanced multi-page website</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />E-commerce or custom features</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Priority support & integrations</li>
+                  </ul>
+                  <Button 
+                    className="w-full bg-purple-600 hover:bg-purple-700"
+                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  >
+                    Book Consultation
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Website Care Plan */}
+      <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              Website Care Plan — We Keep It Running
+            </motion.h2>
+            <motion.p className="text-lg text-gray-600 mb-12" variants={itemVariants}>
+              Choose monthly or annual maintenance, and let us handle the tech while you focus on your business.
+            </motion.p>
+            <motion.div variants={itemVariants}>
+              <Card className="max-w-lg mx-auto border-2 border-gradient-to-r from-blue-300 to-purple-300">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Website Care Plan</h3>
+                  <p className="text-3xl font-bold text-gradient bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                    ₹2,999/month or ₹29,999/year
+                  </p>
+                  <ul className="space-y-3 mb-8 text-left">
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Unlimited bug fixes</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Security updates & backups</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Performance monitoring</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Priority support</li>
+                    <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Hosting included</li>
+                  </ul>
+                  <Button 
+                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  >
+                    Subscribe to Care Plan
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              How It Works
+            </motion.h2>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div className="text-center" variants={itemVariants}>
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-white">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Book a Call</h3>
+              <p className="text-gray-600">Schedule a free consultation to discuss your project needs and goals.</p>
+            </motion.div>
+            <motion.div className="text-center" variants={itemVariants}>
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-white">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">We Design & Build</h3>
+              <p className="text-gray-600">Our team creates your custom website with modern design and functionality.</p>
+            </motion.div>
+            <motion.div className="text-center" variants={itemVariants}>
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-white">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Launch & Maintain</h3>
+              <p className="text-gray-600">We deploy your site and provide ongoing maintenance with our Care Plan.</p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              Our Work
+            </motion.h2>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="h-48 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg mb-4 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">Restaurant Site</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Fine Dining Restaurant</h3>
+                  <p className="text-gray-600 text-sm">Modern restaurant website with online reservations and menu showcase.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="h-48 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg mb-4 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">Portfolio Site</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Creative Portfolio</h3>
+                  <p className="text-gray-600 text-sm">Personal portfolio website for a professional photographer.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg mb-4 flex items-center justify-center">
+                    <span className="text-white font-bold text-lg">E-commerce Site</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Online Store</h3>
+                  <p className="text-gray-600 text-sm">Complete e-commerce solution with payment integration.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            className="text-center mt-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={itemVariants}
+          >
+            <Button 
+              onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+            >
+              Book a Consultation to See More
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              What Our Clients Say
+            </motion.h2>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card>
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-4">
+                    "TechDrop made our business site in record time — stress-free and professional. The care plan gives us peace of mind knowing our site is always running smoothly."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">RS</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Rahul Sharma</p>
+                      <p className="text-sm text-gray-500">CEO, Digital Solutions</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card>
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="flex text-yellow-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 mb-4">
+                    "Amazing experience working with TechDrop. They handled everything from design to deployment, and the ongoing maintenance is fantastic. Highly recommended!"
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white font-bold text-sm">PM</span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Priya Mehta</p>
+                      <p className="text-sm text-gray-500">Founder, Creative Studio</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold mb-6" variants={itemVariants}>
+              Get in Touch
+            </motion.h2>
+            <motion.p className="text-xl mb-12 text-blue-100" variants={itemVariants}>
+              Ready to transform your digital presence? Let's build something amazing together.
+            </motion.p>
+            <motion.div className="grid md:grid-cols-3 gap-8 mb-12" variants={containerVariants}>
+              <motion.div className="text-center" variants={itemVariants}>
+                <Mail className="w-8 h-8 mx-auto mb-4 text-blue-200" />
+                <h3 className="font-semibold mb-2">Email</h3>
+                <p className="text-blue-100">vaishnavbhosale1011@gmail.com</p>
+              </motion.div>
+              <motion.div className="text-center" variants={itemVariants}>
+                <Phone className="w-8 h-8 mx-auto mb-4 text-blue-200" />
+                <h3 className="font-semibold mb-2">Phone</h3>
+                <p className="text-blue-100">+91 9552702088</p>
+              </motion.div>
+              <motion.div className="text-center" variants={itemVariants}>
+                <MapPin className="w-8 h-8 mx-auto mb-4 text-blue-200" />
+                <h3 className="font-semibold mb-2">Location</h3>
+                <p className="text-blue-100">Baner, Pune</p>
+              </motion.div>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Button 
+                size="lg"
+                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6 h-auto"
+              >
+                Book a Free Consultation
+                <ArrowRight className="ml-2" />
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                TechDrop
+              </h3>
+              <p className="text-gray-400 mt-2">© 2025 TechDrop. All rights reserved.</p>
+            </div>
+            <div className="flex space-x-6">
+              <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
+                <span className="text-sm font-bold">in</span>
+              </div>
+              <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
+                <span className="text-sm font-bold">ig</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 
