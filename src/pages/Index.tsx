@@ -14,6 +14,7 @@ import {
   Shield,
   Rocket
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
@@ -63,12 +64,26 @@ const Index = () => {
                 TechDrop
               </h1>
             </div>
-            <Button 
-              onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-            >
-              Book Free Consultation
-            </Button>
+            <div className="hidden md:flex items-center space-x-8">
+              <Link to="/careers" className="text-gray-700 hover:text-gray-900 transition-colors">
+                Careers
+              </Link>
+              <Button 
+                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              >
+                Book Free Consultation
+              </Button>
+            </div>
+            <div className="md:hidden">
+              <Button 
+                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                size="sm"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              >
+                Book Consultation
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
@@ -123,12 +138,45 @@ const Index = () => {
             <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
               Who We Are
             </motion.h2>
-            <motion.p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed" variants={itemVariants}>
-              Founded by <strong>Vaishnav Bhosale (Founder)</strong> and <strong>Sneha Mishra (Co-Founder)</strong>, 
+            <motion.p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12" variants={itemVariants}>
               TechDrop is a full-service web agency based in Baner, Pune. We create custom websites, deploy them on 
               reliable hosting, connect your domain, and keep them maintained 24/7. Our mission is simple: build 
               digital experiences that actually work.
             </motion.p>
+          </motion.div>
+          
+          {/* Founder Profiles */}
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-2xl font-bold text-white">VB</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Vaishnav Bhosale</h3>
+                  <p className="text-blue-600 font-medium mb-4">Founder</p>
+                  <p className="text-gray-600">Leading the vision and technical direction of TechDrop's innovative web solutions.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-2xl font-bold text-white">SM</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Sneha Mishra</h3>
+                  <p className="text-purple-600 font-medium mb-4">Co-Founder</p>
+                  <p className="text-gray-600">Driving business strategy and ensuring exceptional client experiences across all projects.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -155,7 +203,7 @@ const Index = () => {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Code className="w-8 h-8 text-white" />
@@ -166,7 +214,7 @@ const Index = () => {
               </Card>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Server className="w-8 h-8 text-white" />
@@ -177,7 +225,7 @@ const Index = () => {
               </Card>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Settings className="w-8 h-8 text-white" />
@@ -213,7 +261,7 @@ const Index = () => {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
-              <Card className="h-full border-2 hover:border-blue-300 transition-colors">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter Website</h3>
                   <p className="text-3xl font-bold text-blue-600 mb-6">₹14,999 <span className="text-sm text-gray-500">one-time</span></p>
@@ -233,7 +281,7 @@ const Index = () => {
               </Card>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Card className="h-full border-2 border-purple-300 relative">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-purple-300/50 relative">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium">
                     Most Popular
@@ -258,7 +306,7 @@ const Index = () => {
               </Card>
             </motion.div>
             <motion.div variants={itemVariants}>
-              <Card className="h-full border-2 hover:border-purple-300 transition-colors">
+              <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Enterprise Website</h3>
                   <p className="text-3xl font-bold text-purple-600 mb-6">Custom Quote</p>
@@ -296,10 +344,10 @@ const Index = () => {
               Choose monthly or annual maintenance, and let us handle the tech while you focus on your business.
             </motion.p>
             <motion.div variants={itemVariants}>
-              <Card className="max-w-lg mx-auto border-2 border-gradient-to-r from-blue-300 to-purple-300">
+              <Card className="max-w-lg mx-auto glass-card glass-hover rounded-2xl border-purple-300/50">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Website Care Plan</h3>
-                  <p className="text-3xl font-bold text-gradient bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                  <p className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
                     ₹2,999/month or ₹29,999/year
                   </p>
                   <ul className="space-y-3 mb-8 text-left">
@@ -563,24 +611,19 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                TechDrop
-              </h3>
-              <p className="text-gray-400 mt-2">© 2025 TechDrop. All rights reserved.</p>
-            </div>
-            <div className="flex space-x-6">
-              <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
-                <span className="text-sm font-bold">in</span>
-              </div>
-              <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors cursor-pointer">
-                <span className="text-sm font-bold">ig</span>
-              </div>
-            </div>
+      <footer className="bg-gradient-to-r from-gray-900 to-black text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-6">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+              TechDrop
+            </h3>
+            <p className="text-gray-300 mb-2">📧 vaishnavbhosale1011@gmail.com</p>
+            <p className="text-gray-300 mb-2">📞 +91 9552702088</p>
+            <p className="text-gray-300 mb-6">📍 Baner, Pune</p>
           </div>
+          <p className="text-gray-400 text-sm">
+            © 2025 TechDrop. All rights reserved.
+          </p>
         </div>
       </footer>
     </>
