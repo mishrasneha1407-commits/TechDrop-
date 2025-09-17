@@ -1,5 +1,5 @@
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   Code, 
   Server, 
@@ -18,14 +18,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
+import { useLenis } from '@/hooks/useLenis';
 
 const Index = () => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  useLenis();
+  
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,7 +55,7 @@ const Index = () => {
       />
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-border">
+      <nav className="fixed top-0 w-full aceternity-nav z-50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -68,29 +67,47 @@ const Index = () => {
               <Link to="/careers" className="text-gray-700 hover:text-gray-900 transition-colors">
                 Careers
               </Link>
-              <Button 
-                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Book Free Consultation
-              </Button>
+                <Button 
+                  onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  className="aceternity-button text-white"
+                >
+                  Book Free Consultation
+                </Button>
+              </motion.div>
             </div>
             <div className="md:hidden">
-              <Button 
-                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-                size="sm"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Book Consultation
-              </Button>
+                <Button 
+                  onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  size="sm"
+                  className="aceternity-button text-white"
+                >
+                  Book Consultation
+                </Button>
+              </motion.div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"></div>
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16 overflow-hidden">
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-purple-600/10"
+          style={{ y }}
+        />
+        <div className="absolute inset-0 parallax-bg opacity-30" 
+             style={{
+               backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(120, 119, 198, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 119, 198, 0.3) 0%, transparent 50%)'
+             }}
+        />
         <motion.div 
           className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
           initial="hidden"
@@ -112,11 +129,15 @@ const Index = () => {
           >
             From design to hosting to maintenance — TechDrop handles everything so you can focus on growth.
           </motion.p>
-          <motion.div variants={itemVariants}>
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Button 
               size="lg"
               onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-8 py-6 h-auto"
+              className="aceternity-button text-white text-lg px-8 py-6 h-auto shadow-2xl"
             >
               Book a Free Consultation
               <ArrowRight className="ml-2" />
@@ -125,11 +146,11 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* About Section */}
+      {/* About Section - Just intro text */}
       <section id="about" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -138,45 +159,11 @@ const Index = () => {
             <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
               Who We Are
             </motion.h2>
-            <motion.p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12" variants={itemVariants}>
+            <motion.p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed" variants={itemVariants}>
               TechDrop is a full-service web agency based in Baner, Pune. We create custom websites, deploy them on 
               reliable hosting, connect your domain, and keep them maintained 24/7. Our mission is simple: build 
               digital experiences that actually work.
             </motion.p>
-          </motion.div>
-          
-          {/* Founder Profiles */}
-          <motion.div 
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <motion.div variants={itemVariants}>
-              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-2xl font-bold text-white">VB</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Vaishnav Bhosale</h3>
-                  <p className="text-blue-600 font-medium mb-4">Founder</p>
-                  <p className="text-gray-600">Leading the vision and technical direction of TechDrop's innovative web solutions.</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div variants={itemVariants}>
-              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
-                <CardContent className="p-8 text-center">
-                  <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-2xl font-bold text-white">SM</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Sneha Mishra</h3>
-                  <p className="text-purple-600 font-medium mb-4">Co-Founder</p>
-                  <p className="text-gray-600">Driving business strategy and ensuring exceptional client experiences across all projects.</p>
-                </CardContent>
-              </Card>
-            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -202,7 +189,11 @@ const Index = () => {
             viewport={{ once: true }}
             variants={containerVariants}
           >
-            <motion.div variants={itemVariants}>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -213,7 +204,11 @@ const Index = () => {
                 </CardContent>
               </Card>
             </motion.div>
-            <motion.div variants={itemVariants}>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -224,7 +219,11 @@ const Index = () => {
                 </CardContent>
               </Card>
             </motion.div>
-            <motion.div variants={itemVariants}>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                 <CardContent className="p-8 text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -271,12 +270,17 @@ const Index = () => {
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Mobile-friendly design</li>
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Hosting & SSL included for 1 year</li>
                   </ul>
-                  <Button 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
-                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Book Consultation
-                  </Button>
+                    <Button 
+                      className="w-full aceternity-button"
+                      onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                    >
+                      Book Consultation
+                    </Button>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -296,12 +300,17 @@ const Index = () => {
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />SEO optimization basics</li>
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Analytics & contact form integration</li>
                   </ul>
-                  <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Book Consultation
-                  </Button>
+                    <Button 
+                      className="w-full aceternity-button"
+                      onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                    >
+                      Book Consultation
+                    </Button>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -315,12 +324,17 @@ const Index = () => {
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />E-commerce or custom features</li>
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Priority support & integrations</li>
                   </ul>
-                  <Button 
-                    className="w-full bg-purple-600 hover:bg-purple-700"
-                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Book Consultation
-                  </Button>
+                    <Button 
+                      className="w-full aceternity-button"
+                      onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                    >
+                      Book Consultation
+                    </Button>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -357,12 +371,17 @@ const Index = () => {
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Priority support</li>
                     <li className="flex items-center"><CheckCircle className="w-5 h-5 text-green-500 mr-3" />Hosting included</li>
                   </ul>
-                  <Button 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    Subscribe to Care Plan
-                  </Button>
+                    <Button 
+                      className="w-full aceternity-button"
+                      onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                    >
+                      Subscribe to Care Plan
+                    </Button>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -563,6 +582,68 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Team Section - Founders at bottom */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" variants={itemVariants}>
+              Meet Our Team
+            </motion.h2>
+            <motion.p className="text-lg text-gray-600 max-w-2xl mx-auto" variants={itemVariants}>
+              The passionate minds behind TechDrop's innovative web solutions.
+            </motion.p>
+          </motion.div>
+          
+          {/* Founder Profiles */}
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-2xl font-bold text-white">VB</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Vaishnav Bhosale</h3>
+                  <p className="text-blue-600 font-medium mb-4">Founder</p>
+                  <p className="text-gray-600">Leading the vision and technical direction of TechDrop's innovative web solutions.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Card className="glass-card glass-hover rounded-2xl border-white/20 h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-2xl font-bold text-white">SM</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Sneha Mishra</h3>
+                  <p className="text-purple-600 font-medium mb-4">Co-Founder</p>
+                  <p className="text-gray-600">Driving business strategy and ensuring exceptional client experiences across all projects.</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -596,11 +677,15 @@ const Index = () => {
                 <p className="text-blue-100">Baner, Pune</p>
               </motion.div>
             </motion.div>
-            <motion.div variants={itemVariants}>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Button 
                 size="lg"
                 onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-                className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6 h-auto"
+                className="bg-white text-blue-600 hover:bg-blue-50 text-lg px-8 py-6 h-auto shadow-xl"
               >
                 Book a Free Consultation
                 <ArrowRight className="ml-2" />

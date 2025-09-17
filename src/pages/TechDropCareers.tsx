@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import SEO from '@/components/SEO';
+import { useLenis } from '@/hooks/useLenis';
 
 const TechDropCareers = () => {
+  useLenis();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -53,7 +55,7 @@ const TechDropCareers = () => {
       />
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-border">
+      <nav className="fixed top-0 w-full aceternity-nav z-50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
@@ -61,12 +63,17 @@ const TechDropCareers = () => {
                 TechDrop
               </Link>
             </div>
-            <Button 
-              onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              Book Free Consultation
-            </Button>
+              <Button 
+                onClick={() => window.open('https://cal.com/techdrop-agency', '_blank')}
+                className="aceternity-button text-white"
+              >
+                Book Free Consultation
+              </Button>
+            </motion.div>
           </div>
         </div>
       </nav>
@@ -131,7 +138,12 @@ const TechDropCareers = () => {
             variants={containerVariants}
           >
             {roles.map((role, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div 
+                key={index} 
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <Card className="h-full glass-card glass-hover rounded-2xl border-white/20">
                   <CardContent className="p-8 text-center">
                     <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -162,11 +174,15 @@ const TechDropCareers = () => {
             <motion.p className="text-lg text-gray-600 mb-8" variants={itemVariants}>
               Send us your resume and let's discuss how you can contribute to our mission.
             </motion.p>
-            <motion.div variants={itemVariants}>
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Button 
                 size="lg"
                 onClick={() => window.location.href = 'mailto:vaishnavbhosale1011@gmail.com?subject=Job Application - TechDrop'}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg px-8 py-6 h-auto"
+                className="aceternity-button text-white text-lg px-8 py-6 h-auto shadow-xl"
               >
                 <Mail className="mr-2" />
                 Send Your Resume
