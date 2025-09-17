@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 15%;
 
-    --primary: 262 83% 58%;
+    --primary: 219 79% 66%;
     --primary-foreground: 0 0% 98%;
 
     --secondary: 210 40% 98%;
@@ -33,7 +31,7 @@
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 262 83% 58%;
+    --ring: 219 79% 66%;
 
     --radius: 0.75rem;
 
@@ -41,14 +39,47 @@
     --techdrop-blue: 219 79% 66%;
     --techdrop-purple: 262 83% 58%;
     --techdrop-gradient: linear-gradient(135deg, hsl(var(--techdrop-blue)), hsl(var(--techdrop-purple)));
-    --techdrop-light: 210 40% 98%;
-    --techdrop-dark: 220 26% 14%;
 
-    /* Glassmorphism effects */
+    /* Glassmorphism effects - Light Mode */
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --glass-blur: blur(8px);
+    --glass-blur: blur(16px);
+  }
+
+  .dark {
+    --background: 220 26% 14%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 26% 14%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 26% 14%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 219 79% 66%;
+    --primary-foreground: 220 26% 14%;
+
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 215 25% 27%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 215 25% 27%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 25% 27%;
+    --input: 215 25% 27%;
+    --ring: 219 79% 66%;
+
+    /* Glassmorphism effects - Dark Mode */
+    --glass-bg: rgba(0, 0, 0, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 }
 
@@ -64,7 +95,8 @@
   }
 
   body {
-    @apply bg-white text-foreground font-space;
+    @apply bg-background text-foreground font-josefin;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -293,17 +325,10 @@
 
 /* Enhanced Glassmorphism utility classes */
 .glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-}
-
-.glass-card-dark {
-  background: rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-hover {
@@ -311,10 +336,16 @@
 }
 
 .glass-hover:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 20px 48px 0 rgba(31, 38, 135, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 48px 0 rgba(31, 38, 135, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-hover:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 48px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Aceternity UI inspired components */

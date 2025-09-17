@@ -78,6 +78,7 @@ export default {
 			},
 			fontFamily: {
 				'space': ['Space Grotesk', 'sans-serif'],
+				'josefin': ['Josefin Sans', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
