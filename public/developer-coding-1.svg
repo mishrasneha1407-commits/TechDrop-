@@ -1,0 +1,51 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#f8fafc"/>
+  
+  <!-- City silhouette -->
+  <path d="M0 120 L20 100 L40 110 L60 90 L80 105 L100 85 L120 95 L140 80 L160 90 L180 75 L200 85 L220 70 L240 80 L260 65 L280 75 L300 70 L300 200 L0 200 Z" fill="#e2e8f0" opacity="0.3"/>
+  
+  <!-- Developer figure -->
+  <circle cx="80" cy="140" r="15" fill="#1e293b"/>
+  <rect x="70" y="155" width="20" height="25" fill="#8b5cf6"/>
+  <rect x="65" y="180" width="30" height="15" fill="#1e40af"/>
+  <rect x="60" y="195" width="40" height="5" fill="#64748b"/>
+  
+  <!-- Laptop -->
+  <rect x="100" y="120" width="80" height="50" fill="#64748b" rx="3"/>
+  <rect x="105" y="125" width="70" height="40" fill="#1e40af"/>
+  
+  <!-- Code editor window -->
+  <rect x="190" y="100" width="90" height="70" fill="#1e40af" rx="5"/>
+  <circle cx="200" cy="110" r="3" fill="#ef4444"/>
+  <circle cx="210" cy="110" r="3" fill="#f59e0b"/>
+  <circle cx="220" cy="110" r="3" fill="#10b981"/>
+  
+  <!-- Code lines -->
+  <rect x="200" y="125" width="60" height="2" fill="#8b5cf6"/>
+  <rect x="200" y="130" width="45" height="2" fill="#3b82f6"/>
+  <rect x="200" y="135" width="50" height="2" fill="#f59e0b"/>
+  <rect x="200" y="140" width="40" height="2" fill="#10b981"/>
+  <rect x="200" y="145" width="55" height="2" fill="#8b5cf6"/>
+  <rect x="200" y="150" width="35" height="2" fill="#3b82f6"/>
+  
+  <!-- HTML tag window -->
+  <rect x="200" y="180" width="50" height="15" fill="white" rx="3"/>
+  <text x="225" y="190" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="8">&lt;/&gt;</text>
+  
+  <!-- Floating labels -->
+  <rect x="50" y="100" width="30" height="15" fill="#8b5cf6" rx="3"/>
+  <text x="65" y="110" text-anchor="middle" fill="white" font-size="8" font-weight="bold">HTML</text>
+  
+  <rect x="250" y="80" width="25" height="15" fill="#f97316" rx="3"/>
+  <text x="262" y="90" text-anchor="middle" fill="white" font-size="8" font-weight="bold">JS</text>
+  
+  <rect x="250" y="50" width="35" height="15" fill="#10b981" rx="3"/>
+  <text x="267" y="60" text-anchor="middle" fill="white" font-size="8" font-weight="bold">CODE</text>
+  
+  <rect x="120" y="100" width="20" height="20" fill="#ef4444" rx="3"/>
+  <circle cx="130" cy="110" r="3" fill="white"/>
+  
+  <rect x="50" y="180" width="20" height="20" fill="#3b82f6" rx="3"/>
+  <text x="60" y="192" text-anchor="middle" fill="white" font-size="8">{}</text>
+</svg>

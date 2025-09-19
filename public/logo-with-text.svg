@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <!-- Droplet shape from original logo -->
+  <defs>
+    <linearGradient id="dropGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#9333EA" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Droplet shape -->
+  <g transform="translate(15, 5) scale(0.8)">
+    <path d="M25,2.5 C25,2.5 0,25 0,37.5 C0,44.4 5.6,50 12.5,50 C19.4,50 25,44.4 25,37.5 C25,44.4 30.6,50 37.5,50 C44.4,50 50,44.4 50,37.5 C50,25 25,2.5 25,2.5 Z" fill="url(#dropGradient)" />
+    <path d="M25,20 L25,37.5 C25,40.5 22.5,43 19.5,43 C16.5,43 14,40.5 14,37.5 C14,30 25,20 25,20 Z" fill="white" />
+  </g>
+  
+  <!-- Text "Tech" -->
+  <text x="60" y="32" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="white">Tech</text>
+  
+  <!-- Text "Drop" with gradient -->
+  <text x="115" y="32" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="url(#textGradient)">Drop</text>
+</svg>

@@ -29,7 +29,7 @@ const About = () => {
               transition={{ duration: 0.5 }} 
               className="text-4xl font-bold mb-6"
             >
-              About WRLDS Technologies
+              About Tech Drop
             </motion.h1>
             
             <div className="prose prose-lg max-w-none">
@@ -51,7 +51,7 @@ const About = () => {
                 >
                   <h2 className="text-3xl font-bold">Our Mission</h2>
                   <p className="text-gray-600">
-                    At WRLDS Technologies, we're on a mission to transform ordinary textiles into intelligent, 
+                    At Tech Drop, we're on a mission to transform ordinary textiles into intelligent, 
                     data-driven solutions that improve safety, performance, and quality of life across industries.
                   </p>
                   <p className="text-gray-600">
@@ -129,28 +129,28 @@ const About = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {[
                     {
-                      name: "Felix von Heland",
+                      name: "Team Member 1",
                       role: "CEO and Founder",
-                      bio: "Leading WRLDS Technologies with a vision to transform the future of smart textiles.",
-                      image: "/lovable-uploads/aa5291bd-2417-4c1e-9a02-0bcc71a92507.png"
+                      bio: "Leading Tech Drop with a vision to transform the future of smart textiles.",
+                      image: "/placeholder-image.svg"
                     },
                     {
-                      name: "Niek Bijman",
+                      name: "Team Member 2",
                       role: "Software Lead",
                       bio: "Specializing in cloud infrastructure and APIs for seamless data integration.",
-                      image: "/lovable-uploads/e502f601-c519-43a8-86f5-5fa89ae50d2f.png"
+                      image: "/placeholder-image.svg"
                     },
                     {
-                      name: "Chengjie Li",
+                      name: "Team Member 3",
                       role: "Hardware Lead",
                       bio: "Expert in embedded systems engineering, leading our hardware development efforts.",
-                      image: "/lovable-uploads/3de85ddd-15e1-4216-9697-f91abb9a47ce.png"
+                      image: "/placeholder-image.svg"
                     },
                     {
-                      name: "Love",
+                      name: "Team Member 4",
                       role: "COO",
                       bio: "Overseeing daily operations and ensuring business objectives are met effectively.",
-                      image: "/lovable-uploads/a9bb9110-964a-43b0-a5ab-7162140cd133.png"
+                      image: "/placeholder-image.svg"
                     }
                   ].map((member, i) => (
                     <Card key={i} className="bg-gray-50 border border-gray-100 overflow-hidden">
@@ -175,10 +175,21 @@ const About = () => {
             </div>
             
             <div className="mt-16 pt-8 border-t border-gray-200">
-              <Link to="/careers" className="inline-flex items-center px-5 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group">
-                Join Our Team
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link to="/careers" className="inline-flex items-center px-5 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all group">
+                  Join Our Team
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a 
+                  href="https://www.instagram.com/techdrop_solutions/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-all"
+                >
+                  <img src="/instagram-logo.svg" alt="Instagram" className="w-5 h-5 mr-2" />
+                  Follow us on Instagram
+                </a>
+              </div>
             </div>
           </div>
         </div>

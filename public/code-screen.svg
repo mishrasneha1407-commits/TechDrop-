@@ -1,0 +1,64 @@
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="300" height="200" fill="#f8fafc"/>
+  
+  <!-- City silhouette -->
+  <path d="M0 120 L20 100 L40 110 L60 90 L80 105 L100 85 L120 95 L140 80 L160 90 L180 75 L200 85 L220 70 L240 80 L260 65 L280 75 L300 70 L300 200 L0 200 Z" fill="#e2e8f0" opacity="0.3"/>
+  
+  <!-- Central laptop -->
+  <rect x="120" y="100" width="60" height="40" fill="#1e40af" rx="3"/>
+  <rect x="125" y="105" width="50" height="30" fill="white" rx="2"/>
+  
+  <!-- Code lines on laptop screen -->
+  <rect x="130" y="110" width="35" height="1.5" fill="#3b82f6"/>
+  <rect x="130" y="115" width="30" height="1.5" fill="#3b82f6"/>
+  <rect x="130" y="120" width="32" height="1.5" fill="#3b82f6"/>
+  <rect x="130" y="125" width="28" height="1.5" fill="#3b82f6"/>
+  
+  <!-- Curly braces icon on laptop -->
+  <rect x="140" y="130" width="20" height="20" fill="#3b82f6" rx="3"/>
+  <text x="150" y="142" text-anchor="middle" fill="white" font-family="monospace" font-size="10">{}</text>
+  
+  <!-- Laptop base -->
+  <rect x="115" y="140" width="70" height="5" fill="#64748b"/>
+  
+  <!-- Floating code editor window -->
+  <rect x="200" y="80" width="80" height="60" fill="#1e40af" rx="5"/>
+  <circle cx="210" cy="90" r="3" fill="#ef4444"/>
+  <circle cx="220" cy="90" r="3" fill="#f59e0b"/>
+  <circle cx="230" cy="90" r="3" fill="#10b981"/>
+  
+  <!-- Code lines with syntax highlighting -->
+  <rect x="210" y="105" width="50" height="2" fill="#8b5cf6"/>
+  <rect x="210" y="110" width="40" height="2" fill="#f59e0b"/>
+  <rect x="210" y="115" width="45" height="2" fill="#3b82f6"/>
+  <rect x="210" y="120" width="35" height="2" fill="#10b981"/>
+  <rect x="210" y="125" width="48" height="2" fill="#8b5cf6"/>
+  <rect x="210" y="130" width="30" height="2" fill="#f59e0b"/>
+  
+  <!-- HTML tag window -->
+  <rect x="200" y="150" width="50" height="20" fill="white" rx="3"/>
+  <text x="225" y="163" text-anchor="middle" fill="#f97316" font-family="monospace" font-size="10">&lt;/&gt;</text>
+  
+  <!-- Floating labels -->
+  <rect x="50" y="80" width="30" height="15" fill="#8b5cf6" rx="3"/>
+  <text x="65" y="90" text-anchor="middle" fill="white" font-size="8" font-weight="bold">HTML</text>
+  
+  <rect x="250" y="60" width="25" height="15" fill="#f97316" rx="3"/>
+  <text x="262" y="70" text-anchor="middle" fill="white" font-size="8" font-weight="bold">JS</text>
+  
+  <rect x="250" y="30" width="35" height="15" fill="#10b981" rx="3"/>
+  <text x="267" y="40" text-anchor="middle" fill="white" font-size="8" font-weight="bold">CODE</text>
+  
+  <rect x="50" y="110" width="20" height="20" fill="#ef4444" rx="3"/>
+  <circle cx="60" cy="120" r="3" fill="white"/>
+  
+  <rect x="50" y="160" width="20" height="20" fill="#3b82f6" rx="3"/>
+  <text x="60" y="172" text-anchor="middle" fill="white" font-size="8">{}</text>
+  
+  <!-- Green foliage -->
+  <path d="M0 150 Q30 130 60 150 Q90 170 120 150" fill="#10b981" opacity="0.3"/>
+  <path d="M180 150 Q210 130 240 150 Q270 170 300 150" fill="#10b981" opacity="0.3"/>
+  <path d="M0 160 Q20 140 40 160 Q60 180 80 160" fill="#10b981" opacity="0.2"/>
+  <path d="M220 160 Q240 140 260 160 Q280 180 300 160" fill="#10b981" opacity="0.2"/>
+</svg>

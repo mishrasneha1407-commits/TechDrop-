@@ -3,10 +3,10 @@ import { motion } from "framer-motion"
 export function HeroBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Gradient Mesh Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-blue-950 dark:via-purple-950 dark:to-pink-950" />
+      {/* Gradient Mesh Background (deeper, blue->pink blend) */}
+      <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_20%_20%,rgba(59,130,246,0.35),transparent_70%),radial-gradient(50%_40%_at_80%_30%,rgba(236,72,153,0.28),transparent_70%),radial-gradient(40%_40%_at_50%_80%,rgba(168,85,247,0.25),transparent_70%)] dark:bg-[radial-gradient(60%_50%_at_20%_20%,rgba(59,130,246,0.25),transparent_70%),radial-gradient(50%_40%_at_80%_30%,rgba(236,72,153,0.22),transparent_70%),radial-gradient(40%_40%_at_50%_80%,rgba(147,51,234,0.2),transparent_70%)]" />
       
-      {/* Animated Gradient Orbs */}
+      {/* Animated Gradient Orbs (count reduced for performance) */}
       <motion.div
         animate={{
           x: [0, 100, 0],
@@ -14,7 +14,7 @@ export function HeroBackground() {
           scale: [1, 1.2, 1],
         }}
         transition={{
-          duration: 20,
+          duration: 18,
           repeat: Infinity,
           ease: "linear"
         }}
@@ -28,7 +28,7 @@ export function HeroBackground() {
           scale: [1, 0.8, 1],
         }}
         transition={{
-          duration: 15,
+          duration: 14,
           repeat: Infinity,
           ease: "linear"
         }}
@@ -42,15 +42,15 @@ export function HeroBackground() {
           scale: [1, 1.1, 1],
         }}
         transition={{
-          duration: 25,
+          duration: 22,
           repeat: Infinity,
           ease: "linear"
         }}
         className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl"
       />
 
-      {/* Floating Particles */}
-      {Array.from({ length: 50 }).map((_, i) => (
+      {/* Floating Particles (reduced to 20) */}
+      {Array.from({ length: 20 }).map((_, i) => (
         <motion.div
           key={i}
           animate={{
@@ -58,7 +58,7 @@ export function HeroBackground() {
             opacity: [0, 1, 0],
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: Math.random() * 8 + 8,
             repeat: Infinity,
             delay: Math.random() * 5,
           }}

@@ -9,13 +9,24 @@ export function ModernNavbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/#services" },
-    { name: "Pricing", href: "/#pricing" },
-    { name: "About", href: "/#about" },
+    { name: "Home", href: "#top" },
+    { name: "Services", href: "#services" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "About", href: "#about" },
     { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "#contact" },
   ]
+
+  const handleSmoothLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#')) return
+    e.preventDefault()
+    const id = href.replace('#','')
+    const el = document.getElementById(id)
+    if (el) {
+      window.history.replaceState(null, '', `/#${id}`)
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <motion.nav
@@ -30,9 +41,9 @@ export function ModernNavbar() {
           <Link to="/" className="flex items-center space-x-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="font-bold text-2xl bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent"
+              className="flex items-center"
             >
-              TechDrop
+              <img src="/logo-with-text.svg" alt="TechDrop Logo" className="h-10" />
             </motion.div>
           </Link>
 
@@ -42,6 +53,7 @@ export function ModernNavbar() {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={(e) => handleSmoothLink(e as unknown as React.MouseEvent<HTMLAnchorElement>, item.href)}
                 className="text-foreground hover:text-primary transition-colors font-medium"
               >
                 {item.name}
@@ -90,7 +102,7 @@ export function ModernNavbar() {
                   >
                     <Link
                       to={item.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => { handleSmoothLink(e as unknown as React.MouseEvent<HTMLAnchorElement>, item.href); setIsOpen(false) }}
                       className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                     >
                       {item.name}

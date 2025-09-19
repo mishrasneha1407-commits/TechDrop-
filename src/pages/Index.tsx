@@ -15,7 +15,8 @@ import {
   ChevronDown,
   Users,
   Clock,
-  Award
+  Award,
+  Calendar as CalendarIcon
 } from 'lucide-react';
 import { useState } from 'react';
 import SEO from '@/components/SEO';
@@ -38,18 +39,18 @@ const Index = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
     }
   };
 
@@ -197,68 +198,149 @@ const Index = () => {
       />
       
       <ModernNavbar />
+      <div id="top" />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Hero Section - Cake style two-column */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-16 scroll-mt-24">
         <HeroBackground />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-8"
-          >
-            <motion.div variants={itemVariants} className="space-y-6">
-              <h1 className="text-5xl md:text-7xl font-bold font-josefin leading-tight">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Full-Stack Website
-                </span>
-                <br />
-                <span className="text-foreground">Solutions, Done for You.</span>
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-josefin font-light">
-                From design to hosting to maintenance — TechDrop handles everything 
-                so you can focus on growth.
-              </p>
-            </motion.div>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <GlassmorphismCard className="p-4" hover={false}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left column */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="space-y-6"
+            >
+              <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold font-josefin leading-tight text-foreground">
+                The intuitive web platform for fast‑growing brands
+              </motion.h1>
+              <motion.p variants={itemVariants} className="text-xl md:text-2xl text-muted-foreground font-josefin font-light max-w-xl">
+                We design, build, host and maintain your website end‑to‑end. Beautiful, fast, and stress‑free.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <GradientButton 
                   href="https://cal.com/techdrop-agency"
                   size="lg"
                   className="text-lg px-8 py-4"
                 >
-                  Book a Free Consultation
+                  Book Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </GradientButton>
-              </GlassmorphismCard>
-              
-              <GradientButton 
-                href="#services"
-                variant="secondary"
-                size="lg"
-                className="bg-transparent border-2 border-purple-500 text-purple-600 dark:text-purple-400 hover:bg-purple-500 hover:text-white"
-              >
-                Explore Services
-              </GradientButton>
+
+                {/* Outlined glass CTA with micro-interactions */}
+                <motion.a
+                  href="#services"
+                  className="glass-card border-2 border-white/30 dark:border-white/10 text-foreground rounded-lg px-8 py-4 text-lg font-medium inline-flex items-center justify-center relative overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 400, 
+                      damping: 25,
+                      duration: 0.2
+                    }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0"
+                    whileHover={{ 
+                      opacity: 1,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 border-2 border-transparent bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-0"
+                    whileHover={{ 
+                      opacity: 0.3,
+                      transition: { duration: 0.2 }
+                    }}
+                    style={{
+                      background: 'linear-gradient(45deg, #3b82f6, #8b5cf6)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }}
+                  />
+                  <span className="relative z-10">Explore Services</span>
+                </motion.a>
+              </motion.div>
+
+              {/* Trust signals */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pt-2 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2"><Star className="h-4 w-4 text-yellow-400" /> 5‑star rating</div>
+                <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Hosting + Maintenance Included</div>
+                <div className="flex items-center gap-2"><CalendarIcon className="h-4 w-4 text-blue-500" /> Free consultation via Cal.com</div>
+              </motion.div>
+
+              {/* Review badge */}
+              <motion.div variants={itemVariants} className="mt-2 inline-flex items-center gap-2 glass-card px-3 py-2 rounded-full">
+                <Star className="h-4 w-4 text-yellow-400" />
+                <span className="text-sm">Trusted by founders — 100+ successful launches</span>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Right column - floating mockups */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="relative h-[520px] md:h-[600px]"
+            >
+              {/* Layered blobs for depth */}
+              <div className="absolute -top-10 -right-6 w-80 h-80 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 -left-8 w-72 h-72 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl" />
+
+              {/* Mockup cards with developer/coding images */}
+              <GlassmorphismCard className="absolute top-10 left-2 w-64 md:w-72 p-2 animate-float" hover={false}>
+                <img 
+                  src="/developer-coding-3.svg" 
+                  alt="Developer working on code" 
+                  className="w-full h-40 object-cover rounded-lg"
+                />
+              </GlassmorphismCard>
+
+              <GlassmorphismCard className="absolute top-40 right-0 w-60 md:w-64 p-2 animate-float animation-delay-200" hover={false}>
+                <img 
+                  src="/developer-coding-4.svg" 
+                  alt="Coding and development" 
+                  className="w-full h-32 object-cover rounded-lg"
+                />
+              </GlassmorphismCard>
+
+              <GlassmorphismCard className="absolute bottom-6 left-16 w-72 md:w-80 p-2 animate-float animation-delay-400" hover={false}>
+                <img 
+                  src="/code-screen.svg" 
+                  alt="Code on screen" 
+                  className="w-full h-36 object-cover rounded-lg"
+                />
+              </GlassmorphismCard>
+
+              {/* Avatars overlay */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex -space-x-3">
+                {["/lovable-uploads/48e540e5-6a25-44e4-b3f7-80f3bfc2777a.png","/lovable-uploads/927dae7e-6aaf-4b76-add2-1287a1dd9dc0.png","/lovable-uploads/48ecf6e2-5a98-4a9d-af6f-ae2265cd4098.png"].map((src, i) => (
+                  <img key={i} src={src} alt="client avatar" className="h-10 w-10 rounded-full border-2 border-white dark:border-white/20" />
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
 
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2"
         >
           <ChevronDown className="h-8 w-8 text-muted-foreground" />
         </motion.div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 relative">
+      <section id="services" className="py-24 relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -296,7 +378,7 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 relative">
+      <section id="pricing" className="py-24 relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -363,7 +445,7 @@ const Index = () => {
       </section>
 
       {/* Website Care Plan */}
-      <section className="py-24 relative">
+      <section className="py-24 relative scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -419,7 +501,7 @@ const Index = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-24 relative">
+      <section className="py-24 relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -581,8 +663,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section (Founders) */}
-      <section id="about" className="py-24 relative">
+      {/* Meet the Team Section */}
+      <section id="about" className="py-24 relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -591,28 +673,33 @@ const Index = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold font-josefin mb-6">
-              Who We Are
+              Meet the Team
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto mb-16">
               Founded by Vaishnav Bhosale (Founder) and Sneha Mishra (Co-Founder), TechDrop is a full-service web agency based in Baner, Pune. We create custom websites, deploy them on reliable hosting, connect your domain, and keep them maintained 24/7. Our mission is simple: build digital experiences that actually work.
             </p>
           </motion.div>
 
+          {/* Founders Section */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16"
           >
             <GlassmorphismCard delay={0.2}>
               <div className="text-center space-y-6">
-                <div className="w-32 h-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <Users className="h-16 w-16 text-white" />
+                <div className="w-32 h-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                  src="/vaishnav.jpg" 
+                    alt="Vaishnav Bhosale" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-josefin">Vaishnav Bhosale</h3>
-                  <p className="text-purple-600 dark:text-purple-400 font-medium">Founder</p>
-                  <p className="text-muted-foreground mt-2">
+                  <p className="text-purple-600 dark:text-purple-400 font-medium font-josefin">Founder</p>
+                  <p className="text-muted-foreground mt-2 font-josefin">
                     Full-stack developer with expertise in modern web technologies and business growth strategies.
                   </p>
                 </div>
@@ -621,14 +708,123 @@ const Index = () => {
 
             <GlassmorphismCard delay={0.4}>
               <div className="text-center space-y-6">
-                <div className="w-32 h-32 mx-auto bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
-                  <Users className="h-16 w-16 text-white" />
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
+                  <img 
+                  src="/sneha-photo.jpeg" 
+                    alt="Sneha Mishra" 
+                    className="w-full h-full object-cover object-[50%_30%]"
+                    loading="eager"
+                    decoding="sync"
+                    onError={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      const base = import.meta.env.BASE_URL || "/";
+                      if (!target.dataset.attempt || target.dataset.attempt === "jpg") {
+                        target.src = `${base}sneha-photo.jpeg`;
+                        target.dataset.attempt = "jpeg";
+                      } else if (target.dataset.attempt === "jpeg") {
+                        target.src = `${base}sneha-photo.png`;
+                        target.dataset.attempt = "png";
+                      }
+                    }}
+                  />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold font-josefin">Sneha Mishra</h3>
-                  <p className="text-purple-600 dark:text-purple-400 font-medium">Co-Founder</p>
-                  <p className="text-muted-foreground mt-2">
+                  <p className="text-purple-600 dark:text-purple-400 font-medium font-josefin">Co-Founder</p>
+                  <p className="text-muted-foreground mt-2 font-josefin">
                     Designer and project manager focused on creating exceptional user experiences and client relationships.
+                  </p>
+                </div>
+              </div>
+            </GlassmorphismCard>
+          </motion.div>
+
+          {/* Team Members Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center mb-12"
+          >
+            <h3 className="text-3xl font-bold font-josefin mb-4">Our Team</h3>
+            <p className="text-lg text-muted-foreground font-josefin">
+              Meet the talented individuals who bring your projects to life
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            <GlassmorphismCard delay={0.1}>
+              <div className="text-center space-y-4">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/avatar-placeholder.svg" 
+                    alt="UI/UX Designer" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold font-josefin">UI/UX Designer</h4>
+                  <p className="text-sm text-muted-foreground font-josefin">
+                    Creates beautiful interfaces with Figma, prototypes, and design systems
+                  </p>
+                </div>
+              </div>
+            </GlassmorphismCard>
+
+            <GlassmorphismCard delay={0.2}>
+              <div className="text-center space-y-4">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/avatar-placeholder.svg" 
+                    alt="Frontend Developer" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold font-josefin">Frontend Developer</h4>
+                  <p className="text-sm text-muted-foreground font-josefin">
+                    Builds responsive, animated websites with React, Next.js, and Framer Motion
+                  </p>
+                </div>
+              </div>
+            </GlassmorphismCard>
+
+            <GlassmorphismCard delay={0.3}>
+              <div className="text-center space-y-4">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/avatar-placeholder.svg" 
+                    alt="Backend Developer" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold font-josefin">Backend Developer</h4>
+                  <p className="text-sm text-muted-foreground font-josefin">
+                    Handles server-side logic, APIs, and databases for robust applications
+                  </p>
+                </div>
+              </div>
+            </GlassmorphismCard>
+
+            <GlassmorphismCard delay={0.4}>
+              <div className="text-center space-y-4">
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/avatar-placeholder.svg" 
+                    alt="Marketing Manager" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold font-josefin">Marketing Manager</h4>
+                  <p className="text-sm text-muted-foreground font-josefin">
+                    Runs social media, campaigns, reels, and SEO to grow your business
                   </p>
                 </div>
               </div>
@@ -638,7 +834,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 relative">
+      <section id="contact" className="py-24 relative scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -711,8 +907,8 @@ const Index = () => {
       <footer className="py-12 border-t glass-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4">
-            <div className="font-bold text-2xl bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              TechDrop
+            <div className="flex items-center justify-center">
+              <img src="/logo-with-text.svg" alt="TechDrop Logo" className="h-10" />
             </div>
             <p className="text-muted-foreground">
               © 2025 TechDrop. All rights reserved.
